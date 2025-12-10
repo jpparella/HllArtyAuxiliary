@@ -11,7 +11,7 @@ def calculate(*args):
         comp = float(entry_comp.get())
 
         proportion = (ang600 - ang200) / 400
-        final_angle = (ang200 + proportion * (dist - 200)) + comp
+        final_angle = (ang200 + proportion * (dist - 200)) + (comp*-1)
 
         result_label.config(text=f"Angle: {final_angle:.2f}")
 
