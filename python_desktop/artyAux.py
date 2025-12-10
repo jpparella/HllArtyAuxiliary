@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import sys
 
 trasparency = 0.5
 locked = False
@@ -21,7 +22,7 @@ def calculate(*args):
 
 def trasparencyModeMinus():
     global trasparency
-    value = trasparency-0.1
+    value = trasparency-0.1 
     if (value >= 0.1 and value <= 1.0):
         root.attributes('-alpha',value)
         trasparency = value
@@ -98,7 +99,11 @@ root.geometry("300x300")
 root.attributes("-topmost", True)
 
 # Prevent window from taking focus when clicking
-root.attributes("-toolwindow", True)
+if sys.platform.startswith("win"):
+    try:
+        root.attributes("-toolwindow", True)
+    except tk.TclError:
+        pass
 root.attributes('-alpha',trasparency)
 root.resizable(not locked, not locked)
 root.overrideredirect(locked)
